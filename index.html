@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parth Chaudhari - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="light-theme">
+    <!-- Background slideshow container -->
+    <div class="background-slideshow">
+        <div class="slide active"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+    </div>
+    <!-- Hidden script to ensure dark mode works properly -->
+    <script>
+        // Immediately apply saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.className = 'dark-theme';
+        }
+    </script>
+    <header>
+        <div class="container">
+            <div class="main-heading">
+                <hr class="heading-line">
+                <h1 id="animated-heading">PARTH CHAUDHARI</h1>
+                <hr class="heading-line">
+            </div>
+            <div class="title-row">
+                <span class="title-label">TITLE</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#pictures">Pictures</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#text-analysis">Text Analysis</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="about">
+            <div class="container">
+                <h2>ABOUT ME</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Hello, I'm Parth Chaudhari, a Computer Science student passionate about technology and innovation. I have a strong foundation in programming and problem-solving, with experience in various programming languages and frameworks. I enjoy tackling complex challenges and creating efficient solutions.</p>
+                        <p>When I'm not coding, I enjoy photography, exploring new places, and staying up-to-date with the latest technological advancements. I believe in continuous learning and pushing the boundaries of what's possible with technology.</p>
+                        <div class="cv-download">
+                            <a href="assets/parth_chaudhari_cv.pdf" target="_blank" class="cv-button">
+                                <i class="fas fa-file-pdf"></i> Download CV
+                            </a>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="images/profile_picture.jpeg" alt="Parth Chaudhari">
+                        <p class="image-caption">Parth Chaudhari</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pictures" class="pictures">
+            <div class="container">
+                <h2>PICTURES</h2>
+                <p class="section-subtitle">Images from my birthplace</p>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="images/bp-1.jpg" alt="Birthplace Image 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/bp-2.jpg" alt="Birthplace Image 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/bp-3.webp" alt="Birthplace Image 3">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/bp-4.webp" alt="Birthplace Image 4">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/bp-5.jpg" alt="Birthplace Image 5">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/bp-6.jpg" alt="Birthplace Image 6">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="timeline">
+            <div class="container">
+                <h2>EDUCATION TIMELINE</h2>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>International Institute of Information Technology, Hyderabad</h3>
+                            <p class="time-period">2024 - Present</p>
+                            <p>Bachelor of Technology in Computer Science</p>
+                            <p>Devloping understanding of the industry and the inner workings of the tech-world.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>High School Name</h3>
+                            <p class="time-period">2018 - 2020</p>
+                            <p>Science Stream with Computer Science</p>
+                            <p>Participated in various coding competitions and science exhibitions</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Secondary School Name</h3>
+                            <p class="time-period">2016 - 2018</p>
+                            <p>Developed interest in computer science and programming</p>
+                            <p>Active member of the science club and mathematics olympiad</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="achievements">
+            <div class="container">
+                <h2>ACHIEVEMENTS</h2>
+                <div class="achievements-container">
+                    <div class="achievement-item">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Achievement Title 1</h3>
+                        <p>Description of the achievement including when and where it was obtained, and any significant details about the accomplishment.</p>
+                    </div>
+                    <div class="achievement-item">
+                        <i class="fas fa-medal"></i>
+                        <h3>Achievement Title 2</h3>
+                        <p>Description of the achievement including when and where it was obtained, and any significant details about the accomplishment.</p>
+                    </div>
+                    <div class="achievement-item">
+                        <i class="fas fa-award"></i>
+                        <h3>Achievement Title 3</h3>
+                        <p>Description of the achievement including when and where it was obtained, and any significant details about the accomplishment.</p>
+                    </div>
+                    <div class="achievement-item">
+                        <i class="fas fa-certificate"></i>
+                        <h3>Achievement Title 4</h3>
+                        <p>Description of the achievement including when and where it was obtained, and any significant details about the accomplishment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2>TECHNICAL SKILLS</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Java</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">C++</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Web Technologies</h3>
+                        <div class="skill-item">
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Other Skills</h3>
+                        <div class="skill-item">
+                            <span class="skill-name">Database (SQL/NoSQL)</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Git & Version Control</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Data Structures & Algorithms</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="text-analysis" class="text-analysis">
+            <div class="container">
+                <h2>TEXT ANALYSIS</h2>
+                <div class="text-input-container">
+                    <label for="text-input">Enter text for analysis (10,000+ words):</label>
+                    <textarea id="text-input" rows="10" placeholder="Paste your text here..."></textarea>
+                    <button id="analyze-button">Analyze Text</button>
+                </div>
+                <div class="analysis-results">
+                    <div class="result-section">
+                        <h3>Basic Statistics</h3>
+                        <div id="basic-stats"></div>
+                    </div>
+                    <div class="result-section">
+                        <h3>Pronouns Count</h3>
+                        <div id="pronouns-count"></div>
+                    </div>
+                    <div class="result-section">
+                        <h3>Prepositions Count</h3>
+                        <div id="prepositions-count"></div>
+                    </div>
+                    <div class="result-section">
+                        <h3>Indefinite Articles Count</h3>
+                        <div id="articles-count"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Parth Chaudhari. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
