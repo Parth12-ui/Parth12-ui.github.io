@@ -621,16 +621,17 @@ function initTextAnalysis() {
 ];
                     const indefiniteArticles = ['a','an','some','any','another'];
                     
-                    // Tokenize words (case-insensitive)
-                    const tokens = text.toLowerCase().split(/\b/).map(t => t.trim()).filter(Boolean);
-                    
-                    // Count each group
-                    function countGroup(tokens, group) {
-                        const counts = {};
-                        group.forEach(item => counts[item] = 0);
-                        tokens.forEach(t => { if (counts.hasOwnProperty(t)) counts[t]++; });
-                        return counts;
-                    }
+                    // Robust tokenization: extract only words (allowing apostrophes for contractions)
+const tokens = (text.toLowerCase().match(/[a-zA-Z']+/g) || []);
+
+                    // Count each group, defensively
+function countGroup(tokens, group) {
+    const counts = {};
+    group.forEach(item => counts[item] = 0);
+    // Defensive: Only count exact matches
+    tokens.forEach(t => { if (counts.hasOwnProperty(t)) counts[t]++; });
+    return counts;
+}
                     const pronounCounts = countGroup(tokens, pronouns);
                     const prepositionCounts = countGroup(tokens, prepositions);
                     const articleCounts = countGroup(tokens, indefiniteArticles);
