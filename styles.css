@@ -634,6 +634,7 @@ main {
 /* Text Analysis section */
 .text-input-container {
     margin-bottom: var(--spacing-unit);
+    position: relative;
 }
 
 #text-input {
@@ -746,6 +747,89 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: var(--spacing-unit);
+}
+
+/* Analysis Results Container - Netflix Card Style */
+.analysis-results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.analysis-item {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.analysis-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.analysis-value {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.analysis-label {
+    display: block;
+    color: var(--secondary-color);
+    font-size: 14px;
+}
+
+/* Loading Animation */
+.analysis-loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+.dot-loader {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 20px;
+}
+
+.dot-loader:after {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    animation: dotLoader 1.3s infinite linear;
+}
+
+@keyframes dotLoader {
+    0%, 50% {
+        width: 5px;
+    }
+    25%, 75% {
+        width: 15px;
+    }
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .result-section {

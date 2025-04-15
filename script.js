@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     UserTracker.init(); // Initialize user tracking
     fixSmoothScrolling(); // Fix navigation links
     BackgroundSlideshow.init(); // Initialize background slideshow
+    initTextAnalysis(); // Initialize text analysis functionality
     
     // Print confirmation message
     console.log('Is this working? Yes, user tracking is active!');
@@ -537,67 +538,144 @@ function initEventTracking() {
 
 // Initialize text analysis functionality
 function initTextAnalysis() {
+    console.log('Initializing text analysis functionality...');
     const textInput = document.getElementById('text-input');
     const analyzeButton = document.getElementById('analyze-button');
     const resultsContainer = document.getElementById('analysis-results');
     
-    if (textInput && analyzeButton && resultsContainer) {
-        analyzeButton.addEventListener('click', function() {
-            const text = textInput.value.trim();
-            
-            if (text.length < 100) {
-                resultsContainer.innerHTML = 'Please enter at least 100 characters for a meaningful analysis.';
-                return;
-            }
-            
-            // Show loading indicator
-            resultsContainer.innerHTML = 'Analyzing...';
-            
-            // Simple text analysis
-            setTimeout(() => {
-                const wordCount = text.split(/\s+/).filter(Boolean).length;
-                const charCount = text.length;
-                const sentenceCount = text.split(/[.!?]+/).filter(Boolean).length;
-                const paragraphCount = text.split(/\n+/).filter(Boolean).length;
-                
-                // Calculate reading time
-                const readingTimeMinutes = Math.ceil(wordCount / 200);
-                
-                // Calculate average word length
-                const words = text.split(/\s+/).filter(Boolean);
-                const totalCharacters = words.reduce((acc, word) => acc + word.length, 0);
-                const avgWordLength = (totalCharacters / words.length).toFixed(1);
-                
-                // Display results
-                resultsContainer.innerHTML = `
-                    <div class="analysis-results-container">
-                        <div class="analysis-item">
-                            <span class="analysis-value">${wordCount}</span>
-                            <span class="analysis-label">Words</span>
-                        </div>
-                        <div class="analysis-item">
-                            <span class="analysis-value">${charCount}</span>
-                            <span class="analysis-label">Characters</span>
-                        </div>
-                        <div class="analysis-item">
-                            <span class="analysis-value">${sentenceCount}</span>
-                            <span class="analysis-label">Sentences</span>
-                        </div>
-                        <div class="analysis-item">
-                            <span class="analysis-value">${paragraphCount}</span>
-                            <span class="analysis-label">Paragraphs</span>
-                        </div>
-                        <div class="analysis-item">
-                            <span class="analysis-value">${readingTimeMinutes}</span>
-                            <span class="analysis-label">Min Read</span>
-                        </div>
-                        <div class="analysis-item">
-                            <span class="analysis-value">${avgWordLength}</span>
-                            <span class="analysis-label">Avg Word Length</span>
-                        </div>
-                    </div>
-                `;
-            }, 1000);
+    if (!textInput || !analyzeButton || !resultsContainer) {
+        console.error('Text analysis elements not found:', { 
+            textInput: !!textInput, 
+            analyzeButton: !!analyzeButton, 
+            resultsContainer: !!resultsContainer 
         });
+        return;
     }
+    
+    console.log('Text analysis elements found, adding click listener');
+    
+    analyzeButton.addEventListener('click', function() {
+        console.log('Analyze button clicked');
+        const text = textInput.value.trim();
+        
+        // Show loading indicator (no minimum character limit)
+        resultsContainer.innerHTML = '<div class="analysis-loading">Analyzing... <span class="dot-loader"></span></div>';
+        
+        // Wrap in requestAnimationFrame to ensure the loading indicator gets rendered
+        requestAnimationFrame(() => {
+            // Use setTimeout to keep the UI responsive while processing
+            setTimeout(() => {
+                try {
+                    if (text.length === 0) {
+                        resultsContainer.innerHTML = 'Please enter some text for analysis.';
+                        return;
+                    }
+                    
+                    console.log('Starting text analysis...');
+                    
+                    // Basic statistics calculation
+                    const words = text.split(/\s+/).filter(Boolean);
+                    const wordCount = words.length;
+                    const charCount = text.length;
+                    
+                    // Process text in smaller chunks for better performance
+                    const sentences = text.split(/[.!?]+/).filter(Boolean);
+                    const sentenceCount = sentences.length;
+                    const paragraphs = text.split(/\n+/).filter(Boolean);
+                    const paragraphCount = paragraphs.length;
+                    
+                    // Calculate reading time (average reading speed is 200-250 words per minute)
+                    const readingTimeMinutes = Math.ceil(wordCount / 200);
+                    
+                    // Calculate average word length
+                    let avgWordLength = 0;
+                    if (wordCount > 0) {
+                        let totalCharacters = 0;
+                        for (let i = 0; i < words.length; i++) {
+                            totalCharacters += words[i].length;
+                        }
+                        avgWordLength = (totalCharacters / wordCount).toFixed(1);
+                    }
+                    
+                    console.log('Analysis complete, updating UI');
+                    
+                    // --- Additional Counts ---
+                    const letterCount = (text.match(/[a-zA-Z]/g) || []).length;
+                    const spaceCount = (text.match(/ /g) || []).length;
+                    const newlineCount = (text.match(/\n/g) || []).length;
+                    const specialSymbolCount = (text.match(/[^\w\s]/g) || []).length;
+
+                    // --- Pronouns, Prepositions, Indefinite Articles ---
+                    const pronouns = [
+    'i','me','my','mine','myself','we','us','our','ours','ourselves',
+    'you','your','yours','yourself','yourselves','he','him','his','himself',
+    'she','her','hers','herself','it','its','itself','they','them','their','theirs','themselves',
+    'who','whom','whose','which','that'
+];
+                    const prepositions = [
+    'about','above','across','after','against','along','among','around','at','before','behind',
+    'below','beneath','beside','between','beyond','but','by','concerning','despite','down','during',
+    'except','for','from','in','inside','into','like','near','of','off','on','onto','out','outside',
+    'over','past','regarding','since','through','throughout','to','toward','under','underneath','until',
+    'up','upon','with','within','without'
+];
+                    const indefiniteArticles = ['a','an','some','any','another'];
+                    
+                    // Tokenize words (case-insensitive)
+                    const tokens = text.toLowerCase().split(/\b/).map(t => t.trim()).filter(Boolean);
+                    
+                    // Count each group
+                    function countGroup(tokens, group) {
+                        const counts = {};
+                        group.forEach(item => counts[item] = 0);
+                        tokens.forEach(t => { if (counts.hasOwnProperty(t)) counts[t]++; });
+                        return counts;
+                    }
+                    const pronounCounts = countGroup(tokens, pronouns);
+                    const prepositionCounts = countGroup(tokens, prepositions);
+                    const articleCounts = countGroup(tokens, indefiniteArticles);
+
+                    // Display results
+                    resultsContainer.innerHTML = `
+                        <div class="analysis-results-container">
+                            <div class="analysis-item"><span class="analysis-value">${letterCount}</span><span class="analysis-label">Letters</span></div>
+                            <div class="analysis-item"><span class="analysis-value">${wordCount}</span><span class="analysis-label">Words</span></div>
+                            <div class="analysis-item"><span class="analysis-value">${spaceCount}</span><span class="analysis-label">Spaces</span></div>
+                            <div class="analysis-item"><span class="analysis-value">${newlineCount}</span><span class="analysis-label">Newlines</span></div>
+                            <div class="analysis-item"><span class="analysis-value">${specialSymbolCount}</span><span class="analysis-label">Special Symbols</span></div>
+                            <div class="analysis-item"><span class="analysis-value">${charCount}</span><span class="analysis-label">Characters</span></div>
+                            <div class="analysis-item"><span class="analysis-value">${sentenceCount}</span><span class="analysis-label">Sentences</span></div>
+                            <div class="analysis-item"><span class="analysis-value">${paragraphCount}</span><span class="analysis-label">Paragraphs</span></div>
+                            <div class="analysis-item"><span class="analysis-value">${readingTimeMinutes}</span><span class="analysis-label">Min Read</span></div>
+                            <div class="analysis-item"><span class="analysis-value">${avgWordLength}</span><span class="analysis-label">Avg Word Length</span></div>
+                        </div>
+                        <div class="result-section">
+                            <h3>Pronouns Count</h3>
+                            <div class="group-count-list">
+                                ${Object.entries(pronounCounts).filter(([k,v])=>v>0).map(([k,v]) => `<span class='group-count'><b>${k}</b>: ${v}</span>`).join(', ') || '<span class="none-found">None found</span>'}
+                            </div>
+                        </div>
+                        <div class="result-section">
+                            <h3>Prepositions Count</h3>
+                            <div class="group-count-list">
+                                ${Object.entries(prepositionCounts).filter(([k,v])=>v>0).map(([k,v]) => `<span class='group-count'><b>${k}</b>: ${v}</span>`).join(', ') || '<span class="none-found">None found</span>'}
+                            </div>
+                        </div>
+                        <div class="result-section">
+                            <h3>Indefinite Articles Count</h3>
+                            <div class="group-count-list">
+                                ${Object.entries(articleCounts).filter(([k,v])=>v>0).map(([k,v]) => `<span class='group-count'><b>${k}</b>: ${v}</span>`).join(', ') || '<span class="none-found">None found</span>'}
+                            </div>
+                        </div>
+                    `;
+                } catch (error) {
+                    // Handle any errors during text analysis
+                    console.error('Text analysis error:', error);
+                    resultsContainer.innerHTML = 'An error occurred during analysis. Please try again.';
+                }
+            }, 10); // Small timeout to let the UI update first
+        });
+    });
+    
+    console.log('Text analysis initialization complete');
 }
