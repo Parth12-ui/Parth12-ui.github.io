@@ -152,9 +152,9 @@ h1 { font-size: clamp(2.5rem, 7vw, 5.2rem); font-weight: 700; margin-bottom: 24p
 .reveal.in { opacity: 1; transform: none; }
 
 /* About */
-.about-grid { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; margin-top: 30px; }
+.about-grid { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; margin-top: 30px; }
 .photo-wrap { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); transform-style: preserve-3d; transition: transform .2s ease-out; }
-.photo-wrap img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; filter: saturate(.95); }
+.photo-wrap img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 50%; filter: saturate(.95); }
 .photo-wrap::after { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--accent) 30%, transparent)); mix-blend-mode: overlay; pointer-events: none; }
 .photo-tag { position: absolute; left: 12px; bottom: 12px; font-size: .75rem; padding: 5px 10px; border-radius: 999px; background: color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter: blur(6px); border: 1px solid var(--line); }
 .about-text p { font-size: 1.08rem; }
