@@ -1,63 +1,33 @@
-# Parth Chaudhari - Portfolio Website
+# Parth Chaudhari — portfolio
 
-A clean, minimalist portfolio website for Parth Chaudhari. This site includes sections for About Me, Pictures, Education Timeline, Achievements, Technical Skills, and a Text Analysis tool.
+Personal site, served by GitHub Pages at https://parth12-ui.github.io.
 
-## Features
+Plain HTML, CSS and JavaScript with no build step: edit the files and push.
 
-- **Responsive Design**: Works on all device sizes
-- **Clean Interface**: Minimalist design with modern aesthetics
-- **Event Tracking**: Captures and logs all user interactions
-- **Text Analysis Tool**: Analyzes text for various linguistic elements
-- **Smooth Scrolling Navigation**: Easy section navigation
+## What's on it
 
-## Sections
+- **Hero**: a live passing network drawn on a canvas. Click to call for the ball; move the cursor to press.
+- **Project demos**: every project card opens a small interactive demo
+  - LLM Confidence Under Pressure: results chart (answer retention, discrimination)
+  - Passing Polygons: step-by-step K-Means splitting players into two teams
+  - C-Shell: shows how a command line is split into pipeline stages and redirections
+  - Reliable Transport over UDP: sliding window with cumulative ACKs; click packets to drop them
+  - Packet Sniffer: hover over a captured frame's bytes to decode Ethernet / IPv4 / TCP / HTTP
+  - CLI-Docs: sentence-level locks between two users
+  - Remote 3D Printer Control: MQTT command and telemetry flow
+- **Terminal**: press <kbd>`</kbd> (or the `>_` button). Try `help`, `projects`, `open llm`, `skills | wc -l`.
+- **Command palette**: <kbd>Ctrl/⌘ K</kbd> to jump to any section, project or action.
+- Light/dark theme, skill → project highlighting, deep links (`/#p/llm`), keyboard accessible, respects reduced motion.
 
-1. **About Me**: Personal introduction with image
-2. **Pictures**: Gallery of images from birthplace
-3. **Education Timeline**: Visual timeline of educational background
-4. **Achievements**: Showcase of personal and professional achievements
-5. **Technical Skills**: Visual representation of technical proficiencies
-6. **Text Analysis**: Tool for analyzing text content
+## Editing content
 
-## Event Tracking
+Projects, skills and links live at the top of `script.js` (`PROJECTS`, `SKILLS`, `SKILL_USES`, `LINKS`).
+About, experience and contact text is in `index.html`. Colours are CSS variables at the top of `styles.css`.
 
-The website includes a comprehensive event tracking system that captures:
-- Click events on all interactive elements
-- Page views and section views
-- Form interactions
+## Run locally
 
-All events are logged to the console with timestamp, event type, and element details.
+```bash
+python3 -m http.server 8000
+```
 
-## Text Analysis Tool
-
-The text analysis functionality includes:
-- Basic statistics (letters, words, spaces, newlines, special symbols)
-- Pronoun counting and categorization
-- Preposition counting and categorization
-- Indefinite article counting and categorization
-
-## Customization
-
-To customize this portfolio:
-
-1. Replace placeholder images with your own
-2. Update personal information in the About Me section
-3. Fill in your educational background in the Timeline section
-4. Add your achievements to the Achievements section
-5. Adjust skill levels in the Skills section
-6. Add your social media links in the footer
-
-## Technology Stack
-
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Font Awesome for icons
-
-## Deployment
-
-This site is designed to be deployed on GitHub Pages. Simply push the changes to your GitHub repository named `username.github.io` and GitHub will automatically deploy it.
-
-## License
-
-This project is open source and available under the MIT License.
+Then open http://localhost:8000.
