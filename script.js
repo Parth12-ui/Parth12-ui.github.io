@@ -27,52 +27,119 @@ const LINKS = {
 const FILTERS = [
   { id: 'all', label: 'All' },
   { id: 'ml', label: 'ML & NLP' },
-  { id: 'cv', label: 'Computer vision' },
+  { id: 'data', label: 'Data & sports analytics' },
   { id: 'systems', label: 'Systems' },
   { id: 'net', label: 'Networking' },
-  { id: 'web', label: 'Web & IoT' },
+  { id: 'web', label: 'Web & mobile' },
 ];
 
 const PROJECTS = [
   {
     id: 'llm', icon: '?!', title: 'LLM Confidence Under Pressure', when: 'Sep – Oct 2026', cats: ['ml'],
-    stack: ['PyTorch', 'Hugging Face', 'W&B'],
+    stack: ['PyTorch', 'Hugging Face', 'Slurm', 'W&B'],
     blurb: 'Do language models hold on to a right answer when a user keeps telling them they are wrong?',
     body: [
-      'Course project for Advanced NLP (ANLP). I built a reproducible multi-turn pipeline that puts Qwen2.5-7B and Llama-3.1-8B through six turns of criticism, praise or a neutral control.',
-      'It runs on 450 claims whose truth is known (from MATH-500 and real analysis), and logs each turn\'s verdict, token-probability probes and the model\'s stated confidence.',
+      'Course project for Advanced NLP (ANLP). A reproducible evaluation harness puts Qwen2.5-7B and Llama-3.1-8B (in 4-bit) through six-turn conversations of criticism, praise or a neutral control.',
+      'It covers 450 claims whose truth is known (from MATH-500 and real analysis), runs on a Slurm cluster, and logs each turn\'s verdict, token-probability probes and the model\'s stated confidence. Every table in the report rebuilds from the logged runs without a GPU.',
       'Criticism hurt Llama far more than Qwen. Harsher tone on its own did little; it only mattered when paired with a claim that the answer was wrong.',
     ],
     repo: 'https://github.com/Parth12-ui/CONFIDENCE-matters_ANLP', demo: 'llm',
   },
   {
-    id: 'polygons', icon: '◬', title: 'Passing Polygons', when: 'Apr 2026 – now', cats: ['cv', 'ml'],
-    stack: ['Python', 'OpenCV', 'YOLO', 'K-Means'],
-    blurb: 'Computer vision that reads a football match: passes, formations and which actions create chances.',
+    id: 'polygons', icon: '◬', title: 'Passing Polygons', when: 'Apr 2026 – now', cats: ['data', 'ml'],
+    stack: ['Python', 'JavaScript', 'Canvas', 'OpenCV'],
+    blurb: 'Research that turns tracking data from professional football into phases of play, and labels every passing option.',
     body: [
-      'Research with Prof. Kamalakar Karlapalem at the Data Sciences and Analytics Center, IIIT-H.',
-      'YOLO detects the players and the ball; K-Means clustering on jersey colours separates the two teams. From there the software tracks passes, formations and attacking patterns.',
-      'Each action gets a score for how much it adds to the chances created, and the results are visualised over the pitch. The animated background on this site is a small homage to it.',
+      'Research assistant work with Prof. Kamalakar Karlapalem at the Data Science and Analytics Centre, IIIT-H.',
+      'A Python pipeline turns player-tracking data from 17 professional matches (A-League, Bundesliga) into 8,087 labelled phases of play, measuring 9 defensive-shape metrics every half second.',
+      'A framework-free Canvas/JavaScript dashboard steps through 9,566 on-ball moments and labels 24,374 passing options as clear, contested or blocked.',
+      'The blocking rule held up on 5,803 held-out passes: 86% vs 62% completion. The animated background on this site is a small nod to this project.',
     ],
-    repo: 'https://github.com/Parth12-ui/Passing_polygons', demo: 'kmeans',
+    repo: 'https://github.com/Parth12-ui/Passing_polygons', demo: 'lanes',
+  },
+  {
+    id: 'events', icon: '◎', title: 'Event Management Platform', when: 'Feb 2026', cats: ['web'],
+    stack: ['React', 'Express', 'MongoDB', 'Socket.IO'],
+    blurb: 'A full-stack platform for college fests, built and deployed solo, with portals for participants, organisers and admins.',
+    body: [
+      'Built on my own and deployed on Vercel and Render: about 7,800 lines, 52 REST endpoints and 9 Mongoose data models.',
+      'Sign-in with JSON Web Tokens (JWT) and separate portals for participants, organisers and admins.',
+      'Real-time Socket.IO forums and team chat with file uploads, a custom registration-form builder, team matchmaking and approval of payment proofs.',
+      'QR e-tickets sent by email, double-blind feedback, and a password reset protected by reCAPTCHA.',
+    ],
+    repo: 'https://github.com/Parth12-ui/dass_a1', live: 'https://dass-a1-green.vercel.app/', demo: 'forum',
+  },
+  {
+    id: 'android', icon: '▢', title: 'Institute Management App', when: 'Apr 2026', cats: ['web'],
+    stack: ['Kotlin', 'Jetpack Compose', 'Material 3'],
+    blurb: 'An Android app for students and faculty: timetables, attendance and dashboards that change with your role.',
+    body: [
+      'Two-person team project. I wrote the 5,500-line Kotlin codebase (26 files).',
+      'Dashboards that adapt to whether you are a student or faculty member, and sign-in with a one-time password (OTP).',
+      'A 24-hour timetable with alerts, and attendance marking for each course.',
+    ],
+    repo: 'https://github.com/Parth12-ui/institute-management-app', demo: 'phone',
+  },
+  {
+    id: 'quakes', icon: '≋', title: 'Global Earthquakes, 2015–2025', when: 'Mar 2026', cats: ['data'],
+    stack: ['D3.js', 'JavaScript'],
+    blurb: 'Interactive D3 visualisations of 80,829 earthquakes recorded by the USGS.',
+    body: [
+      'Three-person team project for the Data Visualization course.',
+      'Interactive D3 views of 80,829 earthquake records from the US Geological Survey (USGS): a hexbin density map with tectonic plate boundaries, a depth vs magnitude density plot, and a map of where monitoring is strong and where the data is patchy.',
+    ],
+    repo: null, demo: 'mag',
+  },
+  {
+    id: 'printer', icon: '▲', title: 'Cosmic 3D: Remote Printer Control', when: 'Jan – May 2026', cats: ['web', 'net'],
+    stack: ['TypeScript', 'React', 'Express', 'MQTT', 'ESP32'],
+    blurb: 'Five-person client project to control and watch ESP32 3D printers from any browser. I owned the MQTT layer.',
+    body: [
+      'Client project for Cosmic 3D (Maker\'s Lab) in the Design and Analysis of Software Systems (DASS) course, in a team of five. The system controls and monitors ESP32-based 3D printers remotely (React, Express, Three.js, JWT).',
+      'I owned the MQTT messaging layer: set up the Mosquitto broker over both TCP and WebSockets, and rewrote the backend MQTT service and the dashboard\'s subscriptions so printer telemetry reaches any browser on the network.',
+    ],
+    repo: null, demo: 'mqtt',
+  },
+  {
+    id: 'docs', icon: '¶', title: 'CLI-Docs: Distributed Document Store', when: 'Oct – Nov 2025', cats: ['systems', 'net'],
+    stack: ['C', 'pthreads', 'TCP sockets'],
+    blurb: 'A shared document editor in C where many people can edit the same file at once.',
+    body: [
+      'Two-person team; I wrote most of the 4,700-line C system (18 of 22 commits).',
+      'A name server, several multi-threaded storage servers and a command-line client. Clients read and write directly to the storage servers.',
+      'Per-sentence write locks let many people edit one document while reads carry on. djb2 hash tables give constant-time user and file lookups.',
+      'New files go to the least-loaded server, metadata survives restarts, and there is one-step undo and word-by-word streaming.',
+    ],
+    repo: 'https://github.com/Parth12-ui/CLI-Docs', demo: 'locks',
+  },
+  {
+    id: 'xv6', icon: '⚙', title: 'xv6 Kernel: Schedulers & Demand Paging', when: '2025', cats: ['systems'],
+    stack: ['C', 'RISC-V', 'QEMU'],
+    blurb: 'Added two CPU schedulers and demand paging to the xv6 teaching operating system.',
+    body: [
+      'Added a first-come-first-served (FCFS) scheduler and a Completely Fair Scheduler (CFS) with nice values from −20 to +20.',
+      'Added demand paging: pages are loaded only when first used, with first-in-first-out (FIFO) eviction per process and swap slots.',
+      'Benchmarked the schedulers on CPU-bound and mixed I/O workloads.',
+    ],
+    repo: null, demo: 'sched',
   },
   {
     id: 'shell', icon: '$_', title: 'C-Shell', when: 'Sep 2025', cats: ['systems'],
     stack: ['C', 'POSIX'],
-    blurb: 'A POSIX-compliant UNIX shell with a grammar-based parser, pipelines and job control.',
+    blurb: 'A 1,100-line POSIX shell with a grammar-based parser, pipelines and job control.',
     body: [
-      'The command parser is driven by a context-free grammar (CFG), and supports multi-stage pipelines and input/output redirection.',
-      'Custom signal handling for Ctrl-C (SIGINT) and Ctrl-Z (SIGTSTP), job control with fg/bg, asynchronous reaping of finished processes, and history that persists across sessions.',
+      'A grammar-based parser handles pipelines, command lists with ;, && and ||, background jobs with &, and < > redirection.',
+      'Job control with fg/bg, Ctrl-C (SIGINT) and Ctrl-Z (SIGTSTP) handling, asynchronous reaping of finished child processes, and history that persists across sessions.',
     ],
     repo: 'https://github.com/Parth12-ui/C-Shell', demo: 'parse',
   },
   {
     id: 'net', icon: '⇄', title: 'Reliable Transport over UDP', when: 'Sep – Oct 2025', cats: ['systems', 'net'],
-    stack: ['C', 'TCP', 'UDP', 'HTTP', 'DNS'],
+    stack: ['C', 'UDP'],
     blurb: 'A TCP-like protocol built on UDP: handshakes, sliding windows, cumulative ACKs and retransmission.',
     body: [
-      'Part of my Network Protocol Suite. The protocol does its own connection handshake, sliding-window flow control, cumulative acknowledgements and retransmission of lost packets.',
-      'On top of it I built a client-server chat and a file transfer tool that checks files with MD5, using select() to handle many connections without blocking.',
+      'Part of my Network Protocol Suite: a 12-byte header, a three-way handshake and four-way teardown, a 10-packet sliding window, cumulative acknowledgements and flow control.',
+      'On top of it, a file transfer tool that checks files with MD5 and a chat that uses select() to handle many connections without blocking.',
     ],
     repo: 'https://github.com/Parth12-ui/Net_Protocol-Suite', demo: 'window',
   },
@@ -81,46 +148,30 @@ const PROJECTS = [
     stack: ['C', 'libpcap', 'BPF'],
     blurb: 'A terminal network sniffer that decodes live traffic layer by layer.',
     body: [
-      'Captures network frames in real time with libpcap and Berkeley Packet Filters (BPF).',
-      'Decodes Ethernet, IPv4/IPv6, ARP and TCP/UDP, and keeps sessions in memory so you can inspect payloads afterwards as hex and ASCII.',
+      'Part of my Network Protocol Suite. Captures traffic with libpcap and filters it with Berkeley Packet Filters (BPF).',
+      'Decodes Ethernet, IPv4/IPv6, ARP and TCP/UDP, recognises HTTP and DNS by port, and keeps up to 10,000 packets in memory for hex/ASCII inspection later.',
     ],
     repo: 'https://github.com/Parth12-ui/packet_sniffer', demo: 'hex',
-  },
-  {
-    id: 'docs', icon: '¶', title: 'CLI-Docs', when: 'Sep 2025', cats: ['systems', 'net'],
-    stack: ['C', 'TCP sockets', 'POSIX threads'],
-    blurb: 'A distributed shared-document system where many people can edit the same file at once.',
-    body: [
-      'Multi-threaded naming and storage servers talking over TCP sockets.',
-      'Sentence-level locks let people edit different sentences of the same document at once without conflicts. Owners approve access requests.',
-      'Also: metadata that survives restarts, word-by-word streaming of content, and one shared error-handling framework across every server.',
-    ],
-    repo: 'https://github.com/Parth12-ui/CLI-Docs', demo: 'locks',
-  },
-  {
-    id: 'printer', icon: '▲', title: 'Remote 3D Printer Control', when: 'Jan – May 2026', cats: ['web'],
-    stack: ['React', 'MQTT', 'ESP32', 'Three.js'],
-    blurb: 'Run and watch a network of 3D printers from any browser. Internship at Cosmic 3D, Maker\'s Lab.',
-    body: [
-      'A web system for controlling and monitoring 3D printers over the internet, built during the DASS course with Cosmic 3D.',
-      'MQTT messages carry live updates between the backend API, a React dashboard and ESP32 firmware on the printers: telemetry one way, commands the other.',
-      'File management with G-code slicing, 3D model previews in Three.js, and sign-in so several users can share a printer network safely.',
-    ],
-    repo: null, demo: 'mqtt',
   },
 ];
 
 const SKILLS = {
-  'Languages': ['Python', 'C/C++', 'SQL', 'JavaScript', 'HTML/CSS', 'Arduino C++'],
-  'Frameworks': ['PyTorch', 'Hugging Face Transformers', 'TensorFlow', 'Scikit-Learn', 'React', 'Node.js', 'Express', 'FastAPI'],
-  'Tools': ['Git', 'Docker', 'Google Cloud Platform', 'Weights & Biases', 'Slurm', 'Linux', 'VS Code', 'PyCharm', 'ESP-32', 'MongoDB'],
-  'Libraries': ['pandas', 'NumPy', 'Matplotlib', 'OpenCV', 'YOLO', 'bitsandbytes'],
+  'Languages': ['C', 'C++', 'Python', 'TypeScript', 'JavaScript', 'Kotlin', 'SQL'],
+  'Systems': ['POSIX processes & signals', 'pthreads', 'TCP/UDP sockets', 'libpcap', 'xv6', 'Linux'],
+  'Web & mobile': ['React', 'Node.js', 'Express', 'MongoDB', 'Socket.IO', 'MQTT', 'Jetpack Compose'],
+  'ML & data': ['PyTorch', 'Hugging Face Transformers', 'bitsandbytes', 'scikit-learn', 'OpenCV', 'pandas', 'NumPy', 'Matplotlib', 'D3.js'],
+  'Methods': ['LLM evaluation', 'Hidden-state probing', 'Logistic regression', 'Bootstrap confidence intervals', 'Cross-validation'],
+  'Tools': ['Git', 'Make', 'QEMU', 'Slurm', 'Weights & Biases', 'Jupyter'],
 };
 // Which projects each skill appears in (only where the resume says so).
 const SKILL_USES = {
-  'Python': ['llm', 'polygons'], 'C/C++': ['shell', 'net', 'sniffer', 'docs'], 'JavaScript': ['printer'],
-  'HTML/CSS': ['printer'], 'PyTorch': ['llm'], 'Hugging Face Transformers': ['llm'], 'React': ['printer'],
-  'Weights & Biases': ['llm'], 'Linux': ['shell', 'sniffer'], 'ESP-32': ['printer'], 'OpenCV': ['polygons'], 'YOLO': ['polygons'],
+  'C': ['docs', 'xv6', 'shell', 'net', 'sniffer'], 'Python': ['llm', 'polygons'], 'TypeScript': ['printer'],
+  'JavaScript': ['polygons', 'quakes'], 'Kotlin': ['android'],
+  'POSIX processes & signals': ['shell'], 'pthreads': ['docs'], 'TCP/UDP sockets': ['docs', 'net'], 'libpcap': ['sniffer'], 'xv6': ['xv6'],
+  'React': ['events', 'printer'], 'Node.js': ['events', 'printer'], 'Express': ['events', 'printer'], 'MongoDB': ['events', 'printer'],
+  'Socket.IO': ['events'], 'MQTT': ['printer'], 'Jetpack Compose': ['android'],
+  'PyTorch': ['llm'], 'Hugging Face Transformers': ['llm'], 'bitsandbytes': ['llm'], 'OpenCV': ['polygons'], 'D3.js': ['quakes'],
+  'LLM evaluation': ['llm'], 'Hidden-state probing': ['llm'], 'QEMU': ['xv6'], 'Slurm': ['llm'], 'Weights & Biases': ['llm'],
 };
 const byId = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
 
@@ -213,12 +264,13 @@ const revObs = new IntersectionObserver(entries => {
     revObs.unobserve(e.target);
   });
 }, { threshold: .12 });
+$$('[data-stat]').forEach(el => { el.dataset.count = el.dataset.stat === 'c' ? PROJECTS.filter(p => p.stack.includes('C')).length : PROJECTS.length; });
 const observeReveals = () => $$('.reveal:not(.in)').forEach(el => revObs.observe(el));
 
 /* ---------------- Typed roles ---------------- */
 (function typed() {
   const el = $('#typed');
-  const words = ['systems in C', 'computer vision for football', 'LLM experiments', 'networked hardware', 'UNIX shells'];
+  const words = ['systems in C', 'football analytics', 'LLM experiments', 'real-time web apps', 'Android apps', 'UNIX shells'];
   if (reduced) return;
   let w = 0, i = words[0].length, del = true;
   const tick = () => {
@@ -442,7 +494,8 @@ function openProject(id, opener) {
   $('#modalMeta').textContent = `${p.when} · ${p.stack.join(' · ')}`;
   $('#modalTitle').textContent = p.title;
   $('#modalBody').innerHTML = `<ul>${p.body.map(b => `<li>${esc(b)}</li>`).join('')}</ul>`;
-  $('#modalLinks').innerHTML = (p.repo ? `<a class="btn primary" href="${p.repo}" target="_blank" rel="noopener">View code on GitHub ↗</a>` : '<span class="muted small mono">Code is private to the lab.</span>');
+  $('#modalLinks').innerHTML = (p.live ? `<a class="btn primary" href="${p.live}" target="_blank" rel="noopener">Open the live site ↗</a>` : '')
+    + (p.repo ? `<a class="btn ${p.live ? 'ghost' : 'primary'}" href="${p.repo}" target="_blank" rel="noopener">View code on GitHub ↗</a>` : '<span class="muted small mono">The code for this one isn\'t public.</span>');
   modal.hidden = false; document.body.style.overflow = 'hidden';
   const demoEl = $('#modalDemo'); demoEl.innerHTML = '';
   demoCleanup = DEMOS[p.demo] ? DEMOS[p.demo](demoEl) : null;
@@ -495,60 +548,75 @@ DEMOS.llm = el => {
   render('keep');
 };
 
-/* ---- Passing Polygons: K-Means splitting two teams ---- */
-DEMOS.kmeans = el => {
+/* ---- Passing Polygons: clear / contested / blocked passing options ---- */
+const AMBER = '#e8a93a';
+DEMOS.lanes = el => {
   el.innerHTML = `
-    <div class="demo-title"><span>K-Means: who plays for which team?</span><span id="kmIt">iteration 0</span></div>
-    <canvas id="kmCv"></canvas>
-    <div class="demo-controls"><button class="mini-btn" id="kmStep">Step</button><button class="mini-btn" id="kmRun">▶ Run</button><button class="mini-btn" id="kmNew">New match</button></div>
-    <p class="demo-note">Each dot is a detected player's jersey colour, squashed to 2D. K-Means (k = 2) finds the two kits. Click to add players.</p>`;
-  const cv = $('#kmCv', el);
-  let S, C = palette(), pts = [], cents = [], it = 0, timer = null;
-  const rnd = (m, s) => m + (Math.random() + Math.random() + Math.random() - 1.5) * s;
-  function newMatch() {
-    pts = []; it = 0;
-    const a = [.3 + Math.random() * .1, .35 + Math.random() * .3], b = [.62 + Math.random() * .1, .35 + Math.random() * .3];
-    for (let i = 0; i < 22; i++) { const c = i < 11 ? a : b; pts.push({ x: rnd(c[0], .16), y: rnd(c[1], .22), k: -1 }); }
-    pts.push({ x: .5, y: .1, k: -1 }); // the referee
-    cents = [{ x: Math.random(), y: Math.random() }, { x: Math.random(), y: Math.random() }];
-    draw();
+    <div class="demo-title"><span>Passing options: clear, contested or blocked</span><span id="lnStat"></span></div>
+    <canvas id="lnCv"></canvas>
+    <div class="demo-controls"><span class="small mono"><span style="color:var(--accent)">━</span> clear &nbsp; <span style="color:${AMBER}">━</span> contested &nbsp; <span style="color:var(--accent-2)">┅</span> blocked</span><button class="mini-btn" id="lnReset">Reset</button></div>
+    <p class="demo-note"><b>Drag the defenders</b> (or any player). This is a simplified version of the idea: a pass counts as blocked when a defender stands on its line, and contested when one is close to it. The research works on real tracking data with its own rule.</p>`;
+  const cv = $('#lnCv', el);
+  let S, C = palette(), drag = null;
+  const start = () => ({
+    ball: { x: .2, y: .5 },
+    mates: [{ x: .45, y: .16 }, { x: .5, y: .56 }, { x: .74, y: .32 }, { x: .8, y: .8 }],
+    defs: [{ x: .33, y: .33 }, { x: .52, y: .76 }, { x: .62, y: .1 }, { x: .92, y: .5 }],
+  });
+  let st = start();
+  const P = p => ({ x: 20 + p.x * (S.w - 40), y: 20 + p.y * (S.h - 40) });
+  function segDist(p, a, b) {
+    const dx = b.x - a.x, dy = b.y - a.y, L2 = dx * dx + dy * dy;
+    const t = clamp(((p.x - a.x) * dx + (p.y - a.y) * dy) / L2, 0, 1);
+    return Math.hypot(p.x - (a.x + t * dx), p.y - (a.y + t * dy));
   }
-  function step() {
-    let moved = false;
-    pts.forEach(p => { const k = Math.hypot(p.x - cents[0].x, p.y - cents[0].y) < Math.hypot(p.x - cents[1].x, p.y - cents[1].y) ? 0 : 1; if (k !== p.k) moved = true; p.k = k; });
-    cents = cents.map((c, k) => { const m = pts.filter(p => p.k === k); return m.length ? { x: m.reduce((s, p) => s + p.x, 0) / m.length, y: m.reduce((s, p) => s + p.y, 0) / m.length } : c; });
-    it++; draw(); return moved;
+  function classify() {
+    const a = P(st.ball), blockR = S.w * .025, contR = S.w * .05;
+    return st.mates.map(m => {
+      const b = P(m), d = Math.min(...st.defs.map(df => segDist(P(df), a, b)));
+      return d < blockR ? 'blocked' : d < contR ? 'contested' : 'clear';
+    });
   }
   function draw() {
     const { ctx, w, h } = S; ctx.clearRect(0, 0, w, h);
-    const X = v => 16 + v * (w - 32), Y = v => 16 + v * (h - 32), col = k => k < 0 ? C.muted : k ? C.acc2 : C.acc3;
-    pts.forEach(p => {
-      const c = cents[p.k];
-      if (c) { ctx.strokeStyle = hexA(col(p.k), .18); ctx.beginPath(); ctx.moveTo(X(p.x), Y(p.y)); ctx.lineTo(X(c.x), Y(c.y)); ctx.stroke(); }
-      ctx.fillStyle = col(p.k); ctx.beginPath(); ctx.arc(X(p.x), Y(p.y), 6, 0, 7); ctx.fill();
+    ctx.strokeStyle = C.line; ctx.lineWidth = 1.5;
+    ctx.strokeRect(10, 10, w - 20, h - 20); ctx.beginPath(); ctx.moveTo(w / 2, 10); ctx.lineTo(w / 2, h - 10); ctx.stroke();
+    ctx.beginPath(); ctx.arc(w / 2, h / 2, h * .16, 0, 7); ctx.stroke();
+    const cls = classify(), a = P(st.ball), counts = { clear: 0, contested: 0, blocked: 0 };
+    st.mates.forEach((m, i) => {
+      const b = P(m), c = cls[i]; counts[c]++;
+      ctx.strokeStyle = c === 'clear' ? C.acc : c === 'contested' ? AMBER : C.acc2;
+      ctx.lineWidth = c === 'clear' ? 3 : 2.5; ctx.setLineDash(c === 'blocked' ? [4, 6] : []);
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); ctx.setLineDash([]);
     });
-    cents.forEach((c, k) => {
-      ctx.strokeStyle = col(k); ctx.lineWidth = 3; const x = X(c.x), y = Y(c.y);
-      ctx.beginPath(); ctx.moveTo(x - 9, y - 9); ctx.lineTo(x + 9, y + 9); ctx.moveTo(x + 9, y - 9); ctx.lineTo(x - 9, y + 9); ctx.stroke(); ctx.lineWidth = 1;
+    st.defs.forEach(d => { const p = P(d); ctx.fillStyle = C.acc2; ctx.beginPath(); ctx.arc(p.x, p.y, 9, 0, 7); ctx.fill(); ctx.strokeStyle = hexA(C.acc2, .35); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(p.x, p.y, 15, 0, 7); ctx.stroke(); });
+    st.mates.forEach((m, i) => {
+      const p = P(m); ctx.fillStyle = C.acc; ctx.beginPath(); ctx.arc(p.x, p.y, 9, 0, 7); ctx.fill();
+      ctx.font = '600 11px JetBrains Mono, monospace'; ctx.textAlign = 'center'; ctx.fillStyle = C.text; ctx.fillText(cls[i], p.x, p.y - 16);
     });
-    $('#kmIt', el).textContent = `iteration ${it}`;
+    ctx.fillStyle = C.acc; ctx.beginPath(); ctx.arc(a.x, a.y, 11, 0, 7); ctx.fill();
+    ctx.fillStyle = C.text; ctx.shadowColor = C.acc; ctx.shadowBlur = 10; ctx.beginPath(); ctx.arc(a.x + 12, a.y + 6, 5, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
+    $('#lnStat', el).textContent = `${counts.clear} clear · ${counts.contested} contested · ${counts.blocked} blocked`;
   }
-  const stop = () => { clearInterval(timer); timer = null; $('#kmRun', el).textContent = '▶ Run'; };
-  $('#kmStep', el).onclick = () => { stop(); step(); };
-  $('#kmRun', el).onclick = () => {
-    if (timer) return stop();
-    $('#kmRun', el).textContent = '❚❚ Pause';
-    timer = setInterval(() => { if (!step()) { stop(); toast(`Converged after ${it} iterations`); } }, 650);
-  };
-  $('#kmNew', el).onclick = () => { stop(); newMatch(); };
+  const local = e => { const r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
   cv.addEventListener('pointerdown', e => {
-    const r = cv.getBoundingClientRect();
-    pts.push({ x: clamp((e.clientX - r.left - 16) / (S.w - 32), 0, 1), y: clamp((e.clientY - r.top - 16) / (S.h - 32), 0, 1), k: -1 }); draw();
+    const p = local(e); let best = null, bd = 26;
+    [st.ball, ...st.mates, ...st.defs].forEach(o => { const q = P(o), d = Math.hypot(q.x - p.x, q.y - p.y); if (d < bd) { bd = d; best = o; } });
+    if (best) { drag = best; cv.setPointerCapture(e.pointerId); cv.style.cursor = 'grabbing'; }
   });
-  const ro = new ResizeObserver(() => { S = fitCanvas(cv, 280); draw(); });
-  S = fitCanvas(cv, 280); newMatch(); ro.observe(cv);
+  cv.addEventListener('pointermove', e => {
+    const p = local(e);
+    if (drag) { drag.x = clamp((p.x - 20) / (S.w - 40), 0, 1); drag.y = clamp((p.y - 20) / (S.h - 40), 0, 1); draw(); return; }
+    const near = [st.ball, ...st.mates, ...st.defs].some(o => { const q = P(o); return Math.hypot(q.x - p.x, q.y - p.y) < 26; });
+    cv.style.cursor = near ? 'grab' : 'default';
+  });
+  const up = () => { drag = null; cv.style.cursor = 'default'; };
+  cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+  $('#lnReset', el).onclick = () => { st = start(); draw(); };
+  const ro = new ResizeObserver(() => { S = fitCanvas(cv, Math.round(Math.min(320, Math.max(220, cv.clientWidth * .55)))); draw(); });
+  S = fitCanvas(cv, 300); draw(); ro.observe(cv);
   const th = () => { C = palette(); draw(); }; themeListeners.push(th);
-  return () => { stop(); ro.disconnect(); themeListeners.splice(themeListeners.indexOf(th), 1); };
+  return () => { ro.disconnect(); themeListeners.splice(themeListeners.indexOf(th), 1); };
 };
 
 /* ---- C-Shell: parse a command line ---- */
@@ -557,16 +625,18 @@ DEMOS.parse = el => {
     <div class="demo-title"><span>How the shell reads a command</span></div>
     <input class="mono" id="psIn" value="cat log.txt | grep error | sort > errors.txt &" spellcheck="false" autocomplete="off"
       style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:.9rem">
-    <div class="demo-controls">${['ls -la | wc -l', 'sort < in.txt >> out.txt', 'sleep 30 &', 'echo hi > a ; cat a'].map(x => `<button class="mini-btn mono" data-x="${esc(x)}">${esc(x)}</button>`).join('')}</div>
+    <div class="demo-controls">${['make && ./run || echo failed', 'ls -la | wc -l', 'sort < in.txt >> out.txt', 'sleep 30 &', 'echo hi > a ; cat a'].map(x => `<button class="mini-btn mono" data-x="${esc(x)}">${esc(x)}</button>`).join('')}</div>
     <div id="psOut"></div>
     <div class="demo-controls"><button class="btn ghost" data-open-terminal style="padding:9px 14px">Try a shell in this page →</button></div>`;
   const out = $('#psOut', el), inp = $('#psIn', el);
   const box = (label, inner, color) => `<div style="border:1px solid ${color};border-radius:10px;padding:10px;margin-top:8px"><div class="mono small" style="color:${color};margin-bottom:6px">${label}</div>${inner}</div>`;
   function render() {
     const src = inp.value;
-    const jobs = src.split(/;|&&/).map(s => s.trim()).filter(Boolean);
+    const parts = src.split(/(;|&&|\|\|)/).map(s => s.trim());
+    const jobs = []; for (let i = 0; i < parts.length; i += 2) if (parts[i]) jobs.push({ job: parts[i], conn: i ? parts[i - 1] : null });
     if (!jobs.length) { out.innerHTML = '<p class="demo-note">Type a command above.</p>'; return; }
-    out.innerHTML = jobs.map(job => {
+    const CONN = { ';': 'then, regardless (;)', '&&': 'only if the previous one succeeded (&&)', '||': 'only if the previous one failed (||)' };
+    out.innerHTML = jobs.map(({ job, conn }) => {
       const bg = /&\s*$/.test(job); job = job.replace(/&\s*$/, '').trim();
       const stages = job.split('|').map(s => s.trim()).filter(Boolean);
       const inner = stages.map((st, i) => {
@@ -579,7 +649,7 @@ DEMOS.parse = el => {
         return box(`stage ${i + 1}${stages.length > 1 ? (i < stages.length - 1 ? ' · stdout → pipe' : '') : ''}`,
           `<div class="mono small">argv = [${argv.map(a => `"${esc(a)}"`).join(', ')}]</div>${redir.length ? `<div class="mono small" style="color:var(--accent-2)">redirect: ${redir.join(', ')}</div>` : ''}`, 'var(--line)');
       }).join('');
-      return box(`${stages.length > 1 ? 'pipeline' : 'command'} · ${bg ? 'background job (&)' : 'foreground'}`, inner, bg ? 'var(--accent-3)' : 'var(--accent)');
+      return (conn ? `<div class="mono small muted" style="margin:10px 0 0 4px">↓ ${CONN[conn]}</div>` : '') + box(`${stages.length > 1 ? 'pipeline' : 'command'} · ${bg ? 'background job (&)' : 'foreground'}`, inner, bg ? 'var(--accent-3)' : 'var(--accent)');
     }).join('');
   }
   inp.addEventListener('input', render);
@@ -591,7 +661,7 @@ DEMOS.parse = el => {
 /* ---- Network: sliding window with cumulative ACKs ---- */
 DEMOS.window = el => {
   el.innerHTML = `
-    <div class="demo-title"><span>Sliding window · window = 4</span><span id="swStat">ready</span></div>
+    <div class="demo-title"><span>Sliding window · 4 here, 10 in the real protocol</span><span id="swStat">ready</span></div>
     <canvas id="swCv"></canvas>
     <div class="demo-controls"><button class="mini-btn" id="swGo">▶ Send file</button>
     <label class="small muted mono" style="display:flex;align-items:center;gap:8px">random loss <input type="range" id="swLoss" min="0" max="40" value="10"> <span id="swLv">10%</span></label></div>
@@ -766,7 +836,7 @@ DEMOS.mqtt = el => {
   const cv = $('#mqCv', el); let S, C = palette(), raf;
   const st = { state: 'idle', temp: 24, target: 24, prog: 0, msgs: [], tel: 0 };
   const log = m => $('#mqLog', el).insertAdjacentHTML('afterbegin', `<div>${m}</div>`);
-  const nodes = () => { const w = S.w; return [{ x: w * .16, label: 'React dashboard' }, { x: w * .5, label: 'MQTT broker + API' }, { x: w * .84, label: 'ESP32 printer' }]; };
+  const nodes = () => { const w = S.w; return [{ x: w * .16, label: 'React dashboard' }, { x: w * .5, label: 'Mosquitto broker' }, { x: w * .84, label: 'ESP32 printer' }]; };
   const sendMsg = (from, to, color, topic, onArrive) => st.msgs.push({ from, to, t: 0, color, topic, onArrive });
   function cmd(c) {
     const payload = { start: '{"cmd":"start"}', pause: '{"cmd":"pause"}', heat: '{"nozzle":210}', cool: '{"nozzle":0}' }[c];
@@ -795,7 +865,8 @@ DEMOS.mqtt = el => {
   function draw() {
     const { ctx, w, h } = S, N = nodes(), y = 90; ctx.clearRect(0, 0, w, h);
     ctx.strokeStyle = C.line; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(N[0].x, y); ctx.lineTo(N[2].x, y); ctx.stroke();
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = '10px JetBrains Mono, monospace'; ctx.fillStyle = C.muted;
+    if (w > 520) { ctx.fillText('WebSockets', (N[0].x + N[1].x) / 2, y - 8); ctx.fillText('TCP', (N[1].x + N[2].x) / 2, y - 8); }
     N.forEach((n, i) => {
       const bw = Math.min(w * .28, 170);
       ctx.fillStyle = C.surf; ctx.strokeStyle = C.line; ctx.beginPath(); ctx.roundRect(n.x - bw / 2, y - 34, bw, 68, 12); ctx.fill(); ctx.stroke();
@@ -820,6 +891,187 @@ DEMOS.mqtt = el => {
   log('Printer publishes telemetry on printers/p1/telemetry every second.');
   raf = requestAnimationFrame(fr);
   return () => { cancelAnimationFrame(raf); ro.disconnect(); themeListeners.splice(themeListeners.indexOf(th), 1); };
+};
+
+/* ---- Event platform: real-time forum over Socket.IO ---- */
+DEMOS.forum = el => {
+  const roles = [['participant', 'A'], ['organiser', 'B']];
+  el.innerHTML = `
+    <div class="demo-title"><span>Real-time forum over Socket.IO (illustration)</span><span>room: event:hackathon</span></div>
+    <div class="fm-grid">${roles.map(([r, b]) => `
+      <div class="fm-pane" data-r="${r}">
+        <div class="fm-head mono small"><span class="fm-dot"></span>browser ${b} · ${r}</div>
+        <div class="fm-msgs"></div>
+        <form class="fm-form"><input placeholder="Message as ${r}…" maxlength="120" aria-label="Message as ${r}"><button class="mini-btn">Send</button></form>
+      </div>`).join('')}
+    </div>
+    <div class="fm-server mono small" id="fmServer">server: io.to('event:hackathon').emit(…)</div>
+    <div class="log" id="fmLog"></div>
+    <p class="demo-note">Send from either window: the message goes to the server once and is pushed to everyone in the event's room, with no refresh. Organisers can pin messages.</p>`;
+  let id = 0;
+  const msgs = [
+    { id: id++, role: 'organiser', text: 'Registrations close at 6 pm today.', pinned: true },
+    { id: id++, role: 'participant', text: 'Is the maximum team size 4?', pinned: false },
+  ];
+  const log = m => $('#fmLog', el).insertAdjacentHTML('afterbegin', `<div>${m}</div>`);
+  const pulse = () => { const s = $('#fmServer', el); s.classList.remove('hit'); void s.offsetWidth; s.classList.add('hit'); };
+  function render() {
+    const order = [...msgs].sort((a, b) => (b.pinned - a.pinned) || a.id - b.id);
+    $$('.fm-pane', el).forEach(pane => {
+      const me = pane.dataset.r, box = $('.fm-msgs', pane);
+      box.innerHTML = order.map(m => `<div class="fm-msg ${m.role === me ? 'mine' : ''} ${m.pinned ? 'pinned' : ''}">
+        <span class="mono small muted">${m.pinned ? '📌 ' : ''}${m.role}</span><span>${esc(m.text)}</span>
+        ${me === 'organiser' ? `<button class="fm-pin mono small" data-id="${m.id}">${m.pinned ? 'unpin' : 'pin'}</button>` : ''}</div>`).join('');
+      box.scrollTop = box.scrollHeight;
+    });
+  }
+  $$('.fm-form', el).forEach(f => f.addEventListener('submit', e => {
+    e.preventDefault();
+    const inp = $('input', f), text = inp.value.trim(), role = f.closest('.fm-pane').dataset.r;
+    if (!text) return; inp.value = '';
+    log(`${role} → socket.emit('message', "${esc(text.slice(0, 40))}")`); pulse();
+    setTimeout(() => { msgs.push({ id: id++, role, text, pinned: false }); render(); log('<span class="t-acc">server → broadcast to 2 clients in room</span>'); }, 280);
+  }));
+  el.addEventListener('click', e => {
+    const b = e.target.closest('.fm-pin'); if (!b) return;
+    const m = msgs.find(x => x.id === +b.dataset.id); m.pinned = !m.pinned;
+    log(`organiser → socket.emit('${m.pinned ? 'pin' : 'unpin'}', ${m.id})`); pulse(); setTimeout(render, 280);
+  });
+  render();
+};
+
+/* ---- Institute app: role-aware phone UI with OTP sign-in ---- */
+DEMOS.phone = el => {
+  const courses = [
+    { name: 'Operating Systems', time: '09:00', room: 'H-101', held: 12, present: 10, alert: true },
+    { name: 'Linear Algebra', time: '11:30', room: 'H-204', held: 10, present: 9, alert: false },
+    { name: 'Software Systems', time: '14:00', room: 'Lab 3', held: 8, present: 5, alert: true },
+  ];
+  const roster = [['You', true], ['Student 2', true], ['Student 3', false], ['Student 4', true]];
+  let role = 'student', screen = 'login', marked = false;
+  el.innerHTML = `
+    <div class="demo-title"><span>Same app, different dashboards (illustration)</span></div>
+    <div class="demo-controls"><span class="small muted">Sign in as</span><div class="seg" id="phRole"><button class="on" data-r="student">student</button><button data-r="faculty">faculty</button></div></div>
+    <div class="phone"><div class="phone-notch"></div><div class="phone-screen" id="phScreen"></div></div>
+    <p class="demo-note">Faculty mark attendance; switch back to the student view to see your percentage update.</p>`;
+  const scr = $('#phScreen', el);
+  const pct = c => Math.round(c.present / c.held * 100);
+  function render() {
+    if (screen === 'login') {
+      scr.innerHTML = `<div class="ph-center"><div class="ph-logo">▢</div><h4>Institute</h4><p class="muted small">Sign in as ${role}</p>
+        <div class="otp" id="otp">${'<span></span>'.repeat(4)}</div><button class="btn primary ph-btn" id="phSend">Send OTP</button></div>`;
+      $('#phSend', el).onclick = () => {
+        const code = '4821', boxes = $$('#otp span', el); $('#phSend', el).disabled = true; $('#phSend', el).textContent = 'Code sent ✓';
+        [...code].forEach((d, i) => setTimeout(() => { boxes[i].textContent = d; if (i === 3) setTimeout(() => { screen = 'home'; render(); }, 450); }, 350 + i * 260));
+      };
+      return;
+    }
+    const head = `<div class="ph-bar"><b>${role === 'student' ? 'My day' : 'Teaching'}</b><button class="ph-out mono small" id="phOut">sign out</button></div>`;
+    if (role === 'student') {
+      scr.innerHTML = head + `<div class="ph-sec mono small muted">Today's timetable</div>` + courses.map((c, i) => `
+        <div class="ph-card"><div><b>${c.time}</b> · ${c.name}<div class="muted small">${c.room}</div></div>
+        <button class="ph-bell ${c.alert ? 'on' : ''}" data-i="${i}" aria-label="Toggle alert for ${c.name}">${c.alert ? '🔔' : '🔕'}</button></div>`).join('')
+        + `<div class="ph-sec mono small muted">Attendance</div>` + courses.map(c => `
+        <div class="ph-att"><span>${c.name}</span><b class="${pct(c) < 75 ? 'low' : ''}">${pct(c)}%</b><i style="width:${pct(c)}%"></i></div>`).join('');
+      $$('.ph-bell', scr).forEach(b => b.onclick = () => { const c = courses[+b.dataset.i]; c.alert = !c.alert; render(); toast(c.alert ? `Alert set 10 min before ${c.name}` : 'Alert off'); });
+    } else {
+      const c = courses[0];
+      scr.innerHTML = head + `<div class="ph-sec mono small muted">${c.name} · ${c.time} · class ${c.held + 1}</div>` + roster.map(([n, p], i) => `
+        <label class="ph-row"><span>${n}</span><input type="checkbox" data-i="${i}" ${p ? 'checked' : ''} ${marked ? 'disabled' : ''}><em>${p ? 'present' : 'absent'}</em></label>`).join('')
+        + `<button class="btn primary ph-btn" id="phSubmit" ${marked ? 'disabled' : ''}>${marked ? 'Submitted ✓' : 'Submit attendance'}</button>`;
+      $$('.ph-row input', scr).forEach(cb => cb.onchange = () => { roster[+cb.dataset.i][1] = cb.checked; render(); });
+      const sb = $('#phSubmit', scr); if (sb && !marked) sb.onclick = () => { c.held++; if (roster[0][1]) c.present++; marked = true; render(); toast('Attendance saved'); };
+    }
+    $('#phOut', scr).onclick = () => { screen = 'login'; render(); };
+  }
+  $('#phRole', el).onclick = e => {
+    const b = e.target.closest('button'); if (!b) return; role = b.dataset.r; screen = 'login'; if (role === 'faculty') marked = false;
+    $$('#phRole button', el).forEach(x => x.classList.toggle('on', x === b)); render();
+  };
+  render();
+};
+
+/* ---- Earthquakes: what one magnitude step means ---- */
+DEMOS.mag = el => {
+  el.innerHTML = `
+    <div class="demo-title"><span>How much bigger is one step on the magnitude scale?</span></div>
+    <div class="mag-grid">
+      <label class="mono small">Quake A <b id="mgAv"></b><input type="range" id="mgA" min="2" max="9.5" step="0.1" value="5"></label>
+      <label class="mono small">Quake B <b id="mgBv"></b><input type="range" id="mgB" min="2" max="9.5" step="0.1" value="7"></label>
+    </div>
+    <div class="mag-out" id="mgOut"></div>
+    <div class="mag-dots" id="mgDots"></div>
+    <p class="demo-note">Uses the standard relation log₁₀E = 1.5M + 4.8 (E in joules) and 1 tonne of TNT = 4.184 GJ. The project itself charted 80,829 real USGS records.</p>`;
+  const E = m => Math.pow(10, 1.5 * m + 4.8), tnt = j => j / 4.184e9;
+  const fmt = n => n >= 1e6 ? n.toExponential(1).replace('e+', ' × 10^') : n >= 100 ? Math.round(n).toLocaleString() : n >= 1 ? n.toFixed(1) : n.toPrecision(2);
+  const fmtT = t => t >= 1e6 ? fmt(t / 1e6) + ' megatonnes' : t >= 1e3 ? fmt(t / 1e3) + ' kilotonnes' : t >= 1 ? fmt(t) + ' tonnes' : fmt(t * 1000) + ' kg';
+  function render() {
+    const a = +$('#mgA', el).value, b = +$('#mgB', el).value, lo = Math.min(a, b), hi = Math.max(a, b), d = hi - lo;
+    $('#mgAv', el).textContent = a.toFixed(1); $('#mgBv', el).textContent = b.toFixed(1);
+    const ratio = Math.pow(10, 1.5 * d);
+    $('#mgOut', el).innerHTML = `
+      <div><span class="muted small">Shaking (wave amplitude)</span><b>× ${fmt(Math.pow(10, d))}</b></div>
+      <div><span class="muted small">Energy released</span><b>× ${fmt(ratio)}</b></div>
+      <div><span class="muted small">Quake A ≈ TNT</span><b>${fmtT(tnt(E(a)))}</b></div>
+      <div><span class="muted small">Quake B ≈ TNT</span><b>${fmtT(tnt(E(b)))}</b></div>`;
+    const n = Math.round(ratio);
+    $('#mgDots', el).innerHTML = d === 0 ? '<span class="muted small">Same magnitude, same energy.</span>'
+      : n <= 400 ? `<span class="muted small">The magnitude ${hi.toFixed(1)} quake releases as much energy as ${n.toLocaleString()} quakes of magnitude ${lo.toFixed(1)}:</span><div class="dots">${'<i></i>'.repeat(n)}</div>`
+      : `<span class="muted small">The magnitude ${hi.toFixed(1)} quake releases as much energy as <b>${fmt(ratio)}</b> quakes of magnitude ${lo.toFixed(1)}. Too many dots to draw!</span>`;
+  }
+  $$('input', el).forEach(i => i.addEventListener('input', render));
+  render();
+};
+
+/* ---- xv6: FCFS vs Completely Fair Scheduler ---- */
+DEMOS.sched = el => {
+  const procs = [
+    { name: 'P1', arrive: 0, burst: 6, nice: 0 }, { name: 'P2', arrive: 1, burst: 3, nice: 0 },
+    { name: 'P3', arrive: 2, burst: 4, nice: -5 }, { name: 'P4', arrive: 3, burst: 2, nice: 5 },
+  ];
+  const COL = ['var(--accent)', 'var(--accent-3)', 'var(--accent-2)', AMBER];
+  el.innerHTML = `
+    <div class="demo-title"><span>FCFS vs Completely Fair Scheduler</span></div>
+    <table class="sched-tbl mono small"><thead><tr><th>process</th><th>arrives</th><th>CPU time</th><th>nice</th></tr></thead><tbody>
+      ${procs.map((p, i) => `<tr><td><i style="background:${COL[i]}"></i>${p.name}</td><td>t=${p.arrive}</td>
+        <td><input type="range" min="1" max="8" value="${p.burst}" data-i="${i}" data-k="burst" aria-label="${p.name} CPU time"> <span>${p.burst}</span></td>
+        <td><select data-i="${i}" data-k="nice" aria-label="${p.name} nice value">${[-10, -5, 0, 5, 10].map(n => `<option ${n === p.nice ? 'selected' : ''}>${n}</option>`).join('')}</select></td></tr>`).join('')}
+    </tbody></table>
+    <div id="schOut"></div>
+    <p class="demo-note">Simplified: one CPU, 1-unit time slices, no I/O. FCFS runs each process to completion in arrival order. CFS always runs whoever has had the least weighted CPU time, so a lower nice value earns a bigger share.</p>`;
+  const weight = n => 1024 / Math.pow(1.25, n);
+  function simulate(kind) {
+    const left = procs.map(p => p.burst), vr = procs.map(() => 0), first = procs.map(() => -1), done = procs.map(() => -1), seen = procs.map(() => false);
+    const tl = []; let t = 0, cur = -1;
+    while (done.some(d => d < 0) && t < 200) {
+      const ready = procs.map((p, i) => i).filter(i => procs[i].arrive <= t && left[i] > 0);
+      ready.forEach(i => { if (!seen[i]) { seen[i] = true; const others = ready.filter(j => j !== i && seen[j]); vr[i] = others.length ? Math.min(...others.map(j => vr[j])) : 0; } });
+      if (!ready.length) { tl.push(-1); t++; continue; }
+      let pick;
+      if (kind === 'fcfs') pick = cur >= 0 && left[cur] > 0 ? cur : ready.sort((a, b) => procs[a].arrive - procs[b].arrive || a - b)[0];
+      else pick = ready.sort((a, b) => vr[a] - vr[b] || a - b)[0];
+      cur = pick; if (first[pick] < 0) first[pick] = t;
+      left[pick]--; vr[pick] += 1024 / weight(procs[pick].nice); tl.push(pick); t++;
+      if (left[pick] === 0) done[pick] = t;
+    }
+    const turn = procs.reduce((s, p, i) => s + done[i] - p.arrive, 0) / procs.length;
+    const resp = procs.reduce((s, p, i) => s + first[i] - p.arrive, 0) / procs.length;
+    return { tl, turn, resp };
+  }
+  function row(label, r) {
+    const segs = []; r.tl.forEach(p => { const last = segs[segs.length - 1]; if (last && last.p === p) last.n++; else segs.push({ p, n: 1 }); });
+    return `<div class="gantt-row"><div class="mono small gantt-label">${label}</div><div class="gantt">${segs.map(s => `<span style="flex:${s.n};background:${s.p < 0 ? 'transparent' : COL[s.p]}" title="${s.p < 0 ? 'idle' : procs[s.p].name} × ${s.n}">${s.p < 0 ? '' : procs[s.p].name}</span>`).join('')}</div>
+      <div class="mono small muted">avg turnaround <b>${r.turn.toFixed(1)}</b> · avg wait to first run <b>${r.resp.toFixed(1)}</b></div></div>`;
+  }
+  function render() {
+    const f = simulate('fcfs'), c = simulate('cfs'), T = Math.max(f.tl.length, c.tl.length);
+    $('#schOut', el).innerHTML = row('FCFS', f) + row('CFS', c) + `<div class="mono small muted gantt-axis"><span>t=0</span><span>t=${T}</span></div>`;
+  }
+  el.addEventListener('input', e => {
+    const x = e.target.closest('[data-k]'); if (!x) return;
+    procs[+x.dataset.i][x.dataset.k] = +x.value; if (x.dataset.k === 'burst') x.nextElementSibling.textContent = x.value; render();
+  });
+  render();
 };
 
 /* =========================================================
@@ -862,14 +1114,14 @@ const CMDS = {
       .map(([c, d]) => L(`  ${c.padEnd(22)} ${d}`)),
     L('Pipes work too:  projects | grep POSIX   ·   skills | wc -l', 't-mut'),
   ],
-  whoami: () => [L('Parth Nitesh Chaudhari — CS undergrad at IIIT Hyderabad (2024–2028). Systems, computer vision, NLP.')],
-  about: () => [L('I grew up in Abu Dhabi and study Computer Science at IIIT Hyderabad.'), L('I build things in C that talk to networks and processes, computer vision for football,'), L('and experiments on how language models behave when users push back.')],
+  whoami: () => [L('Parth Nitesh Chaudhari — CS undergrad at IIIT Hyderabad (2024–2028). Systems, full-stack, sports analytics, NLP.')],
+  about: () => [L('I grew up in Abu Dhabi and study Computer Science at IIIT Hyderabad.'), L('I write systems software in C, build full-stack and Android apps, analyse football tracking data,'), L('and run experiments on how language models behave when users push back.')],
   education: () => [L('2024–2028  B.Tech, Computer Science & Engineering — IIIT Hyderabad', 't-acc'), L('2014–2024  High School Diploma — Asian International School, Abu Dhabi')],
   experience: () => [
-    L('Apr 2026 – now   Undergraduate Research Assistant, Data Sciences and Analytics Center, IIIT-H', 't-acc'),
-    L('                  Computer vision for football: passes, formations, attacking patterns (Python, OpenCV, YOLO)'),
-    L('Jan – May 2026    Undergraduate Intern, Cosmic 3D (Maker\'s Lab)', 't-acc'),
-    L('                  Remote 3D printer control: React dashboard, MQTT, ESP32 firmware, Three.js'),
+    L('Apr 2026 – now   Undergraduate Research Assistant, Data Science and Analytics Centre, IIIT-H', 't-acc'),
+    L('                  Football tracking data → 8,087 phases of play; dashboard labelling 24,374 passing options'),
+    L('Jan – May 2026    Software Engineering Team Project, Cosmic 3D (Maker\'s Lab)', 't-acc'),
+    L('                  Remote control of ESP32 3D printers; owned the MQTT layer (Mosquitto over TCP + WebSockets)'),
   ],
   projects: () => PROJECTS.map(p => L(`${p.id.padEnd(10)} ${p.title.padEnd(32)} ${p.stack.join(', ')}`)).concat([L('Type  open <id>  to see one.', 't-mut')]),
   open: a => {
@@ -902,7 +1154,7 @@ const CMDS = {
   exit: () => { setTimeout(closeTerminal, 150); return [L('logout')]; },
   neofetch: () => [
     L('   ▄▄▄▄   parth@portfolio', 't-acc'), L('  █ pc █  ---------------', 't-acc'),
-    L('   ▀▀▀▀   OS: GitHub Pages'), L('          Uni: IIIT Hyderabad · CSE · 2028'), L('          Shell: pc-sh (inspired by C-Shell)'), L('          Langs: Python, C/C++, JavaScript, SQL'),
+    L('   ▀▀▀▀   OS: GitHub Pages'), L('          Uni: IIIT Hyderabad · CSE · 2028'), L('          Shell: pc-sh (inspired by C-Shell)'), L('          Langs: C, C++, Python, TypeScript, Kotlin, SQL'),
   ],
 };
 CMDS.ll = CMDS.ls; CMDS['?'] = CMDS.help; CMDS.man = CMDS.help;

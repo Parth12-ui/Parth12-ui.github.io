@@ -53,7 +53,7 @@
       <div class="hero-inner">
         <p class="eyebrow mono"><span class="dot"></span> CS undergrad · IIIT Hyderabad · class of 2028</p>
         <h1>Hi, I'm <span class="hl">Parth</span>.<br>I build <span class="typed" id="typed">systems in C</span><span class="caret">|</span></h1>
-        <p class="lede">I write low-level software that talks to networks and processes, teach computers to read football matches, and measure how language models hold up when people push back.</p>
+        <p class="lede">I write systems software in C, build full-stack web and Android apps, analyse defensive shape in professional football, and measure how language models hold up when people push back.</p>
         <div class="cta">
           <a class="btn primary magnetic" href="#projects">See my work
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -77,10 +77,10 @@
         </div>
         <div class="about-text reveal">
           <p>I'm a Computer Science undergraduate at the <b>International Institute of Information Technology, Hyderabad</b> (IIIT-H). I grew up in Abu Dhabi and finished school at Asian International School before moving to India for my degree.</p>
-          <p>I like work where you can see what's happening underneath: a shell parsing its own grammar, a protocol deciding when to resend a packet, a model changing its answer because someone said it was wrong. Right now I'm a research assistant at the Data Sciences and Analytics Center, building computer vision tools that analyse football matches.</p>
+          <p>I like work where you can see what's happening underneath: a shell parsing its own grammar, a protocol deciding when to resend a packet, a model changing its answer because someone said it was wrong. Right now I'm a research assistant at the Data Science and Analytics Centre, turning player-tracking data from professional football into measures of defensive shape and passing options.</p>
           <div class="stats">
-            <div class="stat"><b data-count="4">0</b><span>systems projects in C</span></div>
-            <div class="stat"><b data-count="7">0</b><span>projects with live demos below</span></div>
+            <div class="stat"><b data-count="5" data-stat="c">0</b><span>systems projects in C</span></div>
+            <div class="stat"><b data-count="11" data-stat="all">0</b><span>projects with live demos below</span></div>
             <div class="stat"><b data-count="2">0</b><span>research &amp; lab roles in 2026</span></div>
           </div>
           <div class="edu">
@@ -111,13 +111,16 @@
             <div class="tl-top">
               <div>
                 <h3>Undergraduate Research Assistant</h3>
-                <p class="muted">Data Sciences and Analytics Center, IIIT-H · with Prof. Kamalakar Karlapalem</p>
+                <p class="muted">Data Science and Analytics Centre, IIIT-H · with Prof. Kamalakar Karlapalem</p>
               </div>
               <span class="pill live mono">Apr 2026 – now</span>
             </div>
-            <p>Building computer vision software that reads a football match: it tracks passes, formations and attacking patterns, separates the two teams and the ball, and scores each action by how much it adds to the chances a team creates.</p>
-            <div class="tags"><span>Python</span><span>OpenCV</span><span>YOLO</span><span>K-Means</span></div>
-            <button class="link-btn" data-open-project="polygons">Open the clustering demo →</button>
+            <ul>
+              <li>Built a Python pipeline that turns player-tracking data from 17 professional matches (A-League, Bundesliga) into 8,087 labelled phases of play, with 9 defensive-shape metrics sampled every half second.</li>
+              <li>Built a framework-free Canvas/JavaScript dashboard that steps through 9,566 on-ball moments and labels 24,374 passing options as clear, contested or blocked. The blocking rule held up on 5,803 held-out passes (86% vs 62% completion).</li>
+            </ul>
+            <div class="tags"><span>Python</span><span>JavaScript</span><span>Canvas</span><span>OpenCV</span></div>
+            <button class="link-btn" data-open-project="polygons">Try the passing-lanes demo →</button>
           </div>
         </li>
         <li class="tl-item reveal">
@@ -125,17 +128,16 @@
           <div class="tl-card">
             <div class="tl-top">
               <div>
-                <h3>Undergraduate Intern</h3>
-                <p class="muted">Cosmic 3D, Maker's Lab · Design &amp; Analysis of Software Systems (DASS) course</p>
+                <h3>Software Engineering Team Project</h3>
+                <p class="muted">Cosmic 3D, Maker's Lab · client project for the Design &amp; Analysis of Software Systems (DASS) course</p>
               </div>
               <span class="pill mono">Jan – May 2026</span>
             </div>
             <ul>
-              <li>Built a web system to run and monitor 3D printers remotely from any browser.</li>
-              <li>Used MQTT messaging for live updates between the backend API, a React dashboard and ESP32 firmware, covering telemetry and hardware control.</li>
-              <li>Added file management with G-code slicing, 3D model previews in Three.js, and sign-in so several users can share a printer network safely.</li>
+              <li>Five-person team building remote control and live monitoring for ESP32 3D printers (React, Express, Three.js, JWT).</li>
+              <li>Owned the MQTT layer: configured the Mosquitto broker over TCP and WebSockets, and rewrote the backend MQTT service and dashboard subscriptions so printer telemetry reaches any browser on the network.</li>
             </ul>
-            <div class="tags"><span>React</span><span>MQTT</span><span>ESP32</span><span>Three.js</span></div>
+            <div class="tags"><span>TypeScript</span><span>React</span><span>Express</span><span>MQTT</span><span>ESP32</span></div>
             <button class="link-btn" data-open-project="printer">See the message flow →</button>
           </div>
         </li>
@@ -184,7 +186,9 @@
           <a class="btn ghost magnetic" href="mailto:parth.chaudhari@students.iiit.ac.in">Email</a>
           <a class="btn ghost magnetic" href="https://www.linkedin.com/in/parthnc/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn ghost magnetic" href="https://github.com/Parth12-ui" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn primary magnetic" href="assets/Parth_Chaudhari_Resume.pdf" target="_blank" rel="noopener">Download resume</a>
+          <a class="btn primary magnetic" href="assets/Parth_Chaudhari_Resume.pdf" target="_blank" rel="noopener">Resume: software engineering</a>
+          <a class="btn ghost magnetic" href="assets/Parth_Chaudhari_Resume_AIML.pdf" target="_blank" rel="noopener">Resume: AI / ML</a>
+          <a class="btn ghost magnetic" href="assets/Parth_Chaudhari_Resume_DataScience.pdf" target="_blank" rel="noopener">Resume: data science</a>
         </div>
       </div>
     </section>
