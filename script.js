@@ -55,7 +55,7 @@ const PROJECTS = [
       'A framework-free Canvas/JavaScript dashboard steps through 9,566 on-ball moments and labels 24,374 passing options as clear, contested or blocked.',
       'The blocking rule held up on 5,803 held-out passes: 86% vs 62% completion. The animated background on this site is a small nod to this project.',
     ],
-    repo: 'https://github.com/Parth12-ui/Passing_polygons', demo: 'lanes',
+    repo: 'https://github.com/Parth12-ui/Passing_polygons', live: 'https://passing-polygons.vercel.app/', demo: 'lanes',
   },
   {
     id: 'events', icon: '◎', title: 'Event Management Platform', when: 'Feb 2026', cats: ['web'],
