@@ -58,16 +58,18 @@ const PROJECTS = [
     repo: 'https://github.com/Parth12-ui/Passing_polygons', live: 'https://passing-polygons.vercel.app/', demo: 'lanes',
   },
   {
-    id: 'events', icon: '◎', title: 'Event Management Platform', when: 'Feb 2026', cats: ['web'],
+    id: 'events', icon: '◎', title: 'Felicity: College Fest Platform', when: 'Feb 2026', cats: ['web'],
     stack: ['React', 'Express', 'MongoDB', 'Socket.IO'],
-    blurb: 'A full-stack platform for college fests, built and deployed solo, with portals for participants, organisers and admins.',
+    blurb: 'A full-stack event platform for college fests, built and deployed solo, with portals for participants, organisers and admins.',
     body: [
-      'Built on my own and deployed on Vercel and Render: about 7,800 lines, 52 REST endpoints and 9 Mongoose data models.',
+      'Built on my own and deployed: a React 19 + Vite frontend on Vercel, an Express 5 + Mongoose backend on Render, and MongoDB Atlas. About 7,800 lines, 52 REST endpoints and 9 Mongoose data models.',
       'Sign-in with JSON Web Tokens (JWT) and separate portals for participants, organisers and admins.',
       'Real-time Socket.IO forums and team chat with file uploads, a custom registration-form builder, team matchmaking and approval of payment proofs.',
-      'QR e-tickets sent by email, double-blind feedback, and a password reset protected by reCAPTCHA.',
+      'QR e-tickets sent by email, merch orders, double-blind feedback, and a password reset protected by reCAPTCHA.',
     ],
-    repo: 'https://github.com/Parth12-ui/dass_a1', live: 'https://dass-a1-green.vercel.app/', demo: 'forum',
+    repo: 'https://github.com/Parth12-ui/event-management-dashboard', repoLabel: 'Full project on GitHub ↗',
+    links: [{ label: 'Frontend repo ↗', url: 'https://github.com/Parth12-ui/Felicity' }],
+    live: 'https://dass-a1-green.vercel.app/', demo: 'forum',
   },
   {
     id: 'android', icon: '▢', title: 'Institute Management App', when: 'Apr 2026', cats: ['web'],
@@ -495,7 +497,8 @@ function openProject(id, opener) {
   $('#modalTitle').textContent = p.title;
   $('#modalBody').innerHTML = `<ul>${p.body.map(b => `<li>${esc(b)}</li>`).join('')}</ul>`;
   $('#modalLinks').innerHTML = (p.live ? `<a class="btn primary" href="${p.live}" target="_blank" rel="noopener">Open the live site ↗</a>` : '')
-    + (p.repo ? `<a class="btn ${p.live ? 'ghost' : 'primary'}" href="${p.repo}" target="_blank" rel="noopener">View code on GitHub ↗</a>` : '<span class="muted small mono">The code for this one isn\'t public.</span>');
+    + (p.repo ? `<a class="btn ${p.live ? 'ghost' : 'primary'}" href="${p.repo}" target="_blank" rel="noopener">${esc(p.repoLabel || 'View code on GitHub ↗')}</a>` : '<span class="muted small mono">The code for this one isn\'t public.</span>')
+    + (p.links || []).map(l => `<a class="btn ghost" href="${l.url}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('');
   modal.hidden = false; document.body.style.overflow = 'hidden';
   const demoEl = $('#modalDemo'); demoEl.innerHTML = '';
   demoCleanup = DEMOS[p.demo] ? DEMOS[p.demo](demoEl) : null;
